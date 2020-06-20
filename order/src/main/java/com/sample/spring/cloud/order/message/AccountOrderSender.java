@@ -21,6 +21,7 @@ public class AccountOrderSender {
     private final MessageChannel accountOrdersOut;
 
     public boolean send(Order order) {
-        return accountOrdersOut.send(MessageBuilder.withPayload(order).build());
+        return accountOrdersOut.send(MessageBuilder
+                .withPayload(order).build());
     }
 }
