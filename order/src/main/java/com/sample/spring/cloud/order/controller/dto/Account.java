@@ -1,4 +1,4 @@
-package com.sample.spring.cloud.customer.dto;
+package com.sample.spring.cloud.order.controller.dto;
 
 import lombok.*;
 
@@ -9,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Account {
+
     private Long id;
     private String number;
     private int balance;

@@ -5,6 +5,7 @@ import io.specto.hoverfly.junit.core.Hoverfly;
 import io.specto.hoverfly.junit5.HoverflyExtension;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,7 @@ public class CustomerControllerTest {
 //            .printSimulationData();
 
 
+    @Disabled
     @Test
     public void testCustomerWithAccounts() {
         int a = 0, b = 0, d = 0;

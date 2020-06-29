@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sample.spring.cloud.account.dto.Order;
 import com.sample.spring.cloud.account.dto.OrderStatus;
 import com.sample.spring.cloud.account.dto.Product;
-import com.sample.spring.cloud.account.message.OrderSender;
 import com.sample.spring.cloud.account.model.Account;
 import com.sample.spring.cloud.account.service.AccountService;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +35,7 @@ public class AccountController {
 
     @StreamListener(Processor.INPUT)
     @SendTo(Processor.OUTPUT)
+    //@Transformer(inputChannel = Processor.INPUT, outputChannel = Processor.OUTPUT)
     public Order receiveOrder(Order order) throws JsonProcessingException {
         log.info("Order received: {}", mapper.writeValueAsString(order));
         List<Account> accounts = accountService.findAllByCustomerId(order.getCustomerId());
@@ -56,13 +56,14 @@ public class AccountController {
     @PostMapping
     public Account add(@RequestBody Account account) throws JsonProcessingException {
         log.info("Accounts add : {}", mapper.writeValueAsString(account));
-        return accountService.add(account);
+        account = accountService.save(account);
+        return account;
     }
 
     @PutMapping
     public Account update(@RequestBody Account account) throws JsonProcessingException {
         log.info("Accounts update : {}", mapper.writeValueAsString(account));
-        return accountService.update(account);
+        return accountService.save(account);
     }
 
     @PutMapping("/withdraw/{id}/{amount}")
@@ -70,7 +71,7 @@ public class AccountController {
         Account account = accountService.findById(id);
         account.setBalance(account.getBalance() - amount);
         log.info("Accounts withdraw result: {}", mapper.writeValueAsString(account));
-        return accountService.update(account);
+        return accountService.save(account);
     }
 
     @GetMapping("/{id}")
@@ -82,7 +83,7 @@ public class AccountController {
 
     @GetMapping(value = "/customer/{customerId}", produces = "application/json; charset=utf-8")
     public List<Account> findByCustomerId(@PathVariable("customerId") Long customerId) throws JsonProcessingException {
-        System.out.println("findByCustomerId invode, port:" + port);
+        System.out.println("findByCustomerId invoke, port:" + port);
         List<Account> accounts = accountService.findAllByCustomerId(customerId);
         log.info("Accounts findByCustomerId : {}", mapper.writeValueAsString(accounts));
         return accounts;

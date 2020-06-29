@@ -61,6 +61,25 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
+        <dependency>
+            <groupId>au.com.dius</groupId>
+            <artifactId>pact-jvm-consumer-junit5</artifactId>
+            <version>4.0.10</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-contract-stub-runner</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sample.spring.cloud</groupId>
+            <artifactId>sample-spring-cloud</artifactId>
+            <version>${version}</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>com.h2database</groupId>
@@ -73,6 +92,15 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>au.com.dius</groupId>
+                <artifactId>pact-jvm-provider-maven</artifactId>
+                <version>4.0.0</version>
+                <configuration>
+                    <pactBrokerUrl>http://localhost:9292</pactBrokerUrl>
+                    <pactDirectory>target/pacts</pactDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>

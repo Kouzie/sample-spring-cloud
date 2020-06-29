@@ -21,28 +21,22 @@ public class AccountService {
     @PostConstruct
     public void init() {
         List<Account> accountList = new ArrayList<>();
+        accountList.add(new Account("1234567896", 0, 0L));
+        accountList.add(new Account("1234567897", 500000, 0L));
+        accountList.add(new Account("1234567898", 600000, 0L));
         accountList.add(new Account("1234567892", 0, 1L));
         accountList.add(new Account("1234567890", 100000, 1L));
         accountList.add(new Account("1234567891", 200000, 1L));
         accountList.add(new Account("1234567894", 0, 2L));
         accountList.add(new Account("1234567893", 300000, 2L));
         accountList.add(new Account("1234567895", 400000, 2L));
-        accountList.add(new Account("1234567896", 0, 3L));
-        accountList.add(new Account("1234567897", 500000, 3L));
-        accountList.add(new Account("1234567898", 600000, 3L));
         accountRepository.saveAll(accountList);
     }
 
     @Transactional
-    public Account add(Account account) {
+    public Account save(Account account) {
         return accountRepository.save(account);
     }
-
-    @Transactional
-    public Account update(Account account) {
-        return accountRepository.save(account);
-    }
-
     @Transactional
     public Account withdraw(Long id, int amount) {
         Account account = accountRepository.findById(id).orElseThrow(() -> new IllegalArgumentException(id + " account is not exist"));

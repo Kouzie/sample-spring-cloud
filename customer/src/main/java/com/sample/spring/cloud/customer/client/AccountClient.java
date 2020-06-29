@@ -33,6 +33,7 @@ public class AccountClient {
                     @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"), // 서킷 장애를 지정할 최소 호출 실패 수, 기본값 20
                     @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "30"), // 최소 오류 비율. 기본값 50%
                     @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "5000"), // 서킷이 열린후 다시 제공할때 까지 모니터링 time, 기본값 10000
+                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000"), // response timeout, 기본 1초
                     @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "10000") // 통계의 롤링 간격
             }
     )
@@ -42,8 +43,8 @@ public class AccountClient {
         return Arrays.stream(accounts).collect(Collectors.toList());
     }
 
-    public List<Account> findCustomerAccountsFallback(Long id) {
-        log.info("findCustomerAccountsFallback called");
+    public List<Account> findCustomerAccountsFallback(Long id, Throwable exception) {
+        log.info("findCustomerAccountsFallback called, error:" + exception.getMessage());
 //        return new ArrayList<>();
         ValueWrapper w = cacheManager.getCache("accounts").get(id);
         if (w != null) {

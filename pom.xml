@@ -71,8 +71,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
-
         </dependencies>
     </dependencyManagement>
 
@@ -87,6 +85,5 @@
         <module>admin</module>
         <module>hystrix-dashboard</module>
         <module>zuul</module>
-        <module>zipkin-server</module>
     </modules>
 </project>

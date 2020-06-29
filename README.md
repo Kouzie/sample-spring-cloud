@@ -37,10 +37,19 @@ docker run -d --name rabbit -p 5672:5672 -p 15672:15672 rabbitmq:management
 
 guest/guest 로그인 
 
-## install kafka
+## install pact
 
 ```$xslt
 
+$ docker run -d --name postgres -p  5432:5432 \
+-e POSTGRES_USER=oauth -e POSTGRES_PASSWORD=oauth123 -e POSTGRES_DB=oauth postgres
+
+$ docker run -d --name pact-broker --link postgres:postgres -p 9292:9292 \
+-e PACT_BROKER_DATABASE_USERNAME=oauth \
+-e PACT_BROKER_DATABASE_PASSWORD=oauth123 \
+-e PACT_BROKER_DATABASE_HOST=postgres \
+-e PACT_BROKER_DATABASE_NAME=oauth pactfoundation/pact-broker
+d9f90ea83a58458dd515c542dcc8d0c9c9b7078b01730630c2779a3ca8ec4fa9
 ```
 
 ### hystrix 접근

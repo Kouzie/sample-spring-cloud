@@ -1,0 +1,122 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : [ {
+          "matcher" : "exact",
+          "value" : "/order-service/local,dev"
+        } ],
+        "method" : [ {
+          "matcher" : "exact",
+          "value" : "GET"
+        } ],
+        "destination" : [ {
+          "matcher" : "exact",
+          "value" : "192.168.2.141:8888"
+        } ],
+        "scheme" : [ {
+          "matcher" : "exact",
+          "value" : "http"
+        } ],
+        "body" : [ {
+          "matcher" : "exact",
+          "value" : ""
+        } ]
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"name\":\"order-service\",\"profiles\":[\"local,dev\"],\"label\":null,\"version\":null,\"state\":null,\"propertySources\":[{\"name\":\"classpath:app-config/order-service-local.properties\",\"source\":{\"server.port\":{\"value\":\"${PORT:8082}\",\"origin\":\"1:13\"},\"spring.datasource.url\":{\"value\":\"jdbc:h2:mem:order-${INSTANCE:0};DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1\",\"origin\":\"2:23\"},\"feign.hystrix.enabled\":{\"value\":\"true\",\"origin\":\"4:23\"},\"hystrix.command.default.circuitBreaker.requestVolumeThreshold\":{\"value\":\"10\",\"origin\":\"6:63\"},\"hystrix.command.default.circuitBreaker.errorThresholdPercentage\":{\"value\":\"30\",\"origin\":\"8:65\"},\"hystrix.command.default.circuitBreaker.sleepWindowInMilliseconds\":{\"value\":\"1000\",\"origin\":\"10:66\"},\"hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds\":{\"value\":\"1000 \",\"origin\":\"12:74\"},\"hystrix.command.default.metrics.rollingStats.timeInMilliseconds\":{\"value\":\"1000\",\"origin\":\"14:65\"},\"logging.config\":{\"value\":\"classpath:logback-local.xml\",\"origin\":\"16:16\"},\"spring.zipkin.base-url\":{\"value\":\"http://localhost:9411/\",\"origin\":\"17:24\"},\"spring.rabbitmq.host\":{\"value\":\"localhost\",\"origin\":\"19:22\"},\"spring.rabbitmq.port\":{\"value\":\"5672\",\"origin\":\"20:22\"},\"spring.rabbitmq.username\":{\"value\":\"guest\",\"origin\":\"21:26\"},\"spring.rabbitmq.password\":{\"value\":\"guest\",\"origin\":\"22:26\"},\"spring.cloud.stream.rabbit.bindings.productOrdersOut.producer.exchange-type\":{\"value\":\"direct\",\"origin\":\"24:77\"},\"spring.cloud.stream.rabbit.bindings.productOrdersIn.consumer.exchange-type\":{\"value\":\"direct\",\"origin\":\"25:76\"},\"spring.cloud.stream.rabbit.bindings.accountOrdersOut.producer.exchange-type\":{\"value\":\"direct\",\"origin\":\"27:77\"},\"spring.cloud.stream.rabbit.bindings.accountOrdersIn.consumer.exchange-type\":{\"value\":\"direct\",\"origin\":\"28:76\"},\"spring.cloud.stream.bindings.productOrdersIn.group\":{\"value\":\"order\",\"origin\":\"30:52\"},\"spring.cloud.stream.bindings.accountOrdersIn.group\":{\"value\":\"order\",\"origin\":\"31:52\"},\"spring.cloud.stream.rabbit.bindings.productOrdersOut.producer.routing-key-expression\":{\"value\":\"'#'\",\"origin\":\"33:86\"},\"spring.cloud.stream.rabbit.bindings.accountOrdersOut.producer.routing-key-expression\":{\"value\":\"'#'\",\"origin\":\"34:86\"}}},{\"name\":\"classpath:app-config/application-local.properties\",\"source\":{\"spring.datasource.url\":{\"value\":\"jdbc:h2:mem:test-${INSTANCE:0};DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1\",\"origin\":\"3:23\"},\"spring.datasource.driverClassName\":{\"value\":\"org.h2.Driver\",\"origin\":\"4:35\"},\"spring.datasource.username\":{\"value\":\"sa\",\"origin\":\"5:28\"},\"spring.datasource.password\":{\"value\":\"\",\"origin\":\"7:0\"},\"spring.h2.console.enabled\":{\"value\":\"true\",\"origin\":\"7:27\"},\"spring.h2.console.settings.web-allow-others\":{\"value\":\"true\",\"origin\":\"8:45\"},\"spring.jpa.properties.hibernate.dialect\":{\"value\":\"org.hibernate.dialect.H2Dialect\",\"origin\":\"9:41\"},\"spring.jpa.hibernate.ddl-auto\":{\"value\":\"update\",\"origin\":\"10:31\"},\"spring.jpa.generate-ddl\":{\"value\":\"false\",\"origin\":\"11:25\"},\"logging.level.org.hibernate\":{\"value\":\"info\",\"origin\":\"12:29\"},\"spring.jpa.show-sql\":{\"value\":\"true\",\"origin\":\"13:21\"},\"spring.boot.admin.client.url\":{\"value\":\"http://localhost:10000\",\"origin\":\"16:30\"},\"management.endpoint.shutdown.enabled\":{\"value\":\"true\",\"origin\":\"18:38\"},\"management.endpoint.shutdown.sensitive\":{\"value\":\"false\",\"origin\":\"19:40\"},\"management.endpoints.web.exposure.include\":{\"value\":\"*\",\"origin\":\"20:43\"},\"management.endpoint.health.show-details\":{\"value\":\"always\",\"origin\":\"21:41\"},\"management.endpoint.hystrix.stream.enabled\":{\"value\":\"true\",\"origin\":\"23:44\"}}}]}",
+        "encodedBody" : false,
+        "templated" : false,
+        "headers" : {
+          "Cache-Control" : [ "no-cache, no-store, max-age=0, must-revalidate" ],
+          "Content-Type" : [ "application/vnd.spring-cloud.config-server.v2+json" ],
+          "Date" : [ "Fri, 26 Jun 2020 10:54:41 GMT" ],
+          "Expires" : [ "0" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Pragma" : [ "no-cache" ],
+          "Set-Cookie" : [ "JSESSIONID=94F6C305B07DFD2B7F346440F38A58F2; Path=/; HttpOnly" ],
+          "X-Content-Type-Options" : [ "nosniff" ],
+          "X-Frame-Options" : [ "DENY" ],
+          "X-Xss-Protection" : [ "1; mode=block" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : [ {
+          "matcher" : "exact",
+          "value" : "/"
+        } ],
+        "method" : [ {
+          "matcher" : "exact",
+          "value" : "POST"
+        } ],
+        "destination" : [ {
+          "matcher" : "exact",
+          "value" : "account-service:8080"
+        } ],
+        "scheme" : [ {
+          "matcher" : "exact",
+          "value" : "http"
+        } ],
+        "body" : [ {
+          "matcher" : "json",
+          "value" : "{\"id\":null,\"number\":\"123\",\"balance\":5000,\"customerId\":null}"
+        } ]
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"id\":10,\"number\":\"123\",\"balance\":5000,\"customerId\":null}",
+        "encodedBody" : false,
+        "templated" : false,
+        "headers" : {
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Fri, 26 Jun 2020 10:54:56 GMT" ],
+          "Hoverfly" : [ "Was-Here" ]
+        }
+      }
+    }, {
+      "request" : {
+        "path" : [ {
+          "matcher" : "exact",
+          "value" : "/withdraw/10/1000"
+        } ],
+        "method" : [ {
+          "matcher" : "exact",
+          "value" : "PUT"
+        } ],
+        "destination" : [ {
+          "matcher" : "exact",
+          "value" : "account-service:8080"
+        } ],
+        "scheme" : [ {
+          "matcher" : "exact",
+          "value" : "http"
+        } ],
+        "body" : [ {
+          "matcher" : "exact",
+          "value" : ""
+        } ]
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "{\"id\":10,\"number\":\"123\",\"balance\":4000,\"customerId\":null}",
+        "encodedBody" : false,
+        "templated" : false,
+        "headers" : {
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Fri, 26 Jun 2020 10:54:56 GMT" ],
+          "Hoverfly" : [ "Was-Here" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v5",
+    "hoverflyVersion" : "v1.1.5",
+    "timeExported" : "2020-06-26T19:54:56+09:00"
+  }
+}
