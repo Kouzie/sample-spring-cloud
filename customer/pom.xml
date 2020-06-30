@@ -69,18 +69,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-contract-stub-runner</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-contract-verifier</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
         </dependency>
@@ -99,16 +87,6 @@
                 <configuration>
                     <pactBrokerUrl>http://localhost:9292</pactBrokerUrl>
                     <pactDirectory>target/pacts</pactDirectory>
-                </configuration>
-            </plugin>
-            <plugin>
-                <!--컨트랙트 테스트를 실행 및 파일 생성 ,-->
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-contract-maven-plugin</artifactId>
-                <extensions>true</extensions>
-                <configuration>
-                    <packageWithBaseClasses>com.sample.spring.cloud.customer</packageWithBaseClasses>
-                    <testFramework>JUNIT5</testFramework>
                 </configuration>
             </plugin>
         </plugins>
