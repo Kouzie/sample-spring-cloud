@@ -75,9 +75,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.sample.spring.cloud</groupId>
-            <artifactId>sample-spring-cloud</artifactId>
-            <version>${version}</version>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-contract-verifier</artifactId>
             <scope>test</scope>
         </dependency>
 
@@ -100,6 +99,16 @@
                 <configuration>
                     <pactBrokerUrl>http://localhost:9292</pactBrokerUrl>
                     <pactDirectory>target/pacts</pactDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!--컨트랙트 테스트를 실행 및 파일 생성 ,-->
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-contract-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <packageWithBaseClasses>com.sample.spring.cloud.customer</packageWithBaseClasses>
+                    <testFramework>JUNIT5</testFramework>
                 </configuration>
             </plugin>
         </plugins>

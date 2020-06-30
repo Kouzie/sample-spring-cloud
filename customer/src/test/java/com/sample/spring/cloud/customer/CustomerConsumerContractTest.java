@@ -30,7 +30,7 @@ import java.util.List;
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("contract")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, properties = {
-        "account-service.ribbon.listOfServers=127.0.0.1:9080"
+        "account-service.ribbon.listOfServers=127.0.0.1:9080" // pact 를 사용하려면 localhost 를 이용하여 테스트해야함
 })
 @PactTestFor(providerName = "customerServiceProvider", port = "9080")
 public class CustomerConsumerContractTest {

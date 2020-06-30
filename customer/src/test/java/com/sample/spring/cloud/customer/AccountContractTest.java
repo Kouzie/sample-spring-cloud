@@ -16,7 +16,7 @@ import org.springframework.test.context.ActiveProfiles;
 import java.util.List;
 
 @Slf4j
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest
 @ActiveProfiles("contract")
 // 생성된 jar 파일을 가져올 수 있도록 group, artifact 등 설정
 // groupId:artifactId:versioncode:stub-qualifier:port

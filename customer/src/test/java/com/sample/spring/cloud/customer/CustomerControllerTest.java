@@ -71,7 +71,6 @@ public class CustomerControllerTest {
                 log.error("Error connecting with service", e);
                 d++;
             }
-
         }
         log.info("TEST RESULT: 8091={}, 9091={}, 10091={}", a, b, d);
     }
