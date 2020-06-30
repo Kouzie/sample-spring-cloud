@@ -3,22 +3,14 @@ package com.sample.spring.cloud.account.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sample.spring.cloud.account.dto.Order;
-import com.sample.spring.cloud.account.dto.OrderStatus;
-import com.sample.spring.cloud.account.dto.Product;
 import com.sample.spring.cloud.account.model.Account;
 import com.sample.spring.cloud.account.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.cloud.stream.messaging.Processor;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -32,26 +24,6 @@ public class AccountController {
 
     @Value("${server.port:8080}")
     String port;
-
-    @StreamListener(Processor.INPUT)
-    @SendTo(Processor.OUTPUT)
-    //@Transformer(inputChannel = Processor.INPUT, outputChannel = Processor.OUTPUT)
-    public Order receiveOrder(Order order) throws JsonProcessingException {
-        log.info("Order received: {}", mapper.writeValueAsString(order));
-        List<Account> accounts = accountService.findAllByCustomerId(order.getCustomerId());
-        Account account = accounts.get(0);
-        log.info("Account found: {}", mapper.writeValueAsString(account));
-        Product[] products = template.postForObject("http://product-service/" + StringUtils.join(order.getProductIds(), ","), null, Product[].class);
-        log.info("Products found: {}", mapper.writeValueAsString(products));
-        order.setPrice(Arrays.stream(products).mapToInt(Product::getPrice).sum());
-        if (order.getPrice() <= account.getBalance()) {
-            order.setStatus(OrderStatus.ACCEPTED);
-            account.setBalance(account.getBalance() - order.getPrice());
-        } else {
-            order.setStatus(OrderStatus.REJECTED);
-        }
-        return order;
-    }
 
     @PostMapping
     public Account add(@RequestBody Account account) throws JsonProcessingException {

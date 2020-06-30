@@ -8,15 +8,11 @@ import com.sample.spring.cloud.order.client.ProductClient;
 import com.sample.spring.cloud.order.dto.Account;
 import com.sample.spring.cloud.order.dto.Customer;
 import com.sample.spring.cloud.order.dto.Product;
-import com.sample.spring.cloud.order.message.AccountOrder;
-import com.sample.spring.cloud.order.message.OrderSender;
-import com.sample.spring.cloud.order.message.ProductOrder;
 import com.sample.spring.cloud.order.model.Order;
 import com.sample.spring.cloud.order.model.OrderStatus;
 import com.sample.spring.cloud.order.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -33,7 +29,6 @@ public class OrderController {
     private final ProductClient productClient;
     private final AccountClient accountClient;
     private final CustomerClient customerClient;
-    private final OrderSender orderSender;
 
     @PostMapping
     public Order prepare(@RequestBody Order order) throws JsonProcessingException {
@@ -58,39 +53,6 @@ public class OrderController {
             log.info("Account not found: {}", mapper.writeValueAsString(customer.getAccounts()));
         }
         return orderService.save(order);
-    }
-
-    // OrderSender 를 통해 order 를 메세지 브로커로 전달. account-service 가 받아 처리
-    /*@PostMapping
-    public Order process(@RequestBody Order order) throws JsonProcessingException {
-        order = orderService.add(order);
-        log.info("Order saved: {}", mapper.writeValueAsString(order));
-        boolean isSent = orderSender.send(order);
-        log.info("Order send: {}", mapper.writeValueAsString(Collections.singletonMap("isSent", isSent)));
-        return order;
-    }*/
-
-    @StreamListener(value = ProductOrder.INPUT)
-    public void receiveProductOrder(Order order) throws JsonProcessingException {
-        log.info("Order receiveProductOrder: {}", mapper.writeValueAsString(order));
-        order = orderService.findById(order.getId());
-        if (order.getStatus() != OrderStatus.REJECTED) {
-            order.setStatus(order.getStatus());
-            orderService.save(order);
-            log.info("Order status updated: {}", mapper.writeValueAsString(order));
-        }
-    }
-
-//    @StreamListener(value = AccountOrder.INPUT, condition = "headers['processor']=='account'")
-    @StreamListener(value = AccountOrder.INPUT)
-    public void receiveAccountOrder(Order order) throws JsonProcessingException {
-        log.info("Order receiveAccountOrder: {}", mapper.writeValueAsString(order));
-        order = orderService.findById(order.getId());
-        if (order.getStatus() != OrderStatus.REJECTED) {
-            order.setStatus(order.getStatus());
-            orderService.save(order);
-            log.info("Order status updated: {}", mapper.writeValueAsString(order));
-        }
     }
 
     @PutMapping("/{orderId}")
