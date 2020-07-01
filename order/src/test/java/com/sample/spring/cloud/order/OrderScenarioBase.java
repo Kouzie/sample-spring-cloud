@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 @ActiveProfiles("contract")
 @SpringBootTest
 @AutoConfigureStubRunner(ids = {
-        "com.sample.spring.cloud:account:+:stubs:9080",
+//        "com.sample.spring.cloud:account:+:stubs:9080",
         "com.sample.spring.cloud:customer:+:stubs:9081",
         "com.sample.spring.cloud:product:+:stubs:9083"
 }, stubsMode = StubRunnerProperties.StubsMode.LOCAL)

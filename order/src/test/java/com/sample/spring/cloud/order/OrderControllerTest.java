@@ -1,11 +1,10 @@
 package com.sample.spring.cloud.order;
 
-import com.sample.spring.cloud.order.controller.OrderController;
 import com.sample.spring.cloud.order.client.AccountClient;
 import com.sample.spring.cloud.order.client.CustomerClient;
 import com.sample.spring.cloud.order.client.ProductClient;
+import com.sample.spring.cloud.order.controller.OrderController;
 import com.sample.spring.cloud.order.dto.Account;
-import com.sample.spring.cloud.order.message.OrderSender;
 import com.sample.spring.cloud.order.model.Order;
 import com.sample.spring.cloud.order.model.OrderStatus;
 import com.sample.spring.cloud.order.service.OrderService;
@@ -44,8 +43,6 @@ public class OrderControllerTest {
     AccountClient accountClient;
     @MockBean
     CustomerClient customerClient;
-    @MockBean
-    OrderSender orderSender;
 
     @Test
     public void testAccept() throws Exception {

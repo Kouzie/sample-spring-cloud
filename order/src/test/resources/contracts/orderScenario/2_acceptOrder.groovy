@@ -1,4 +1,5 @@
-package contracts.orderService
+/*
+package contracts.orderScenario
 
 org.springframework.cloud.contract.spec.Contract.make {
     request {
@@ -19,4 +20,4 @@ org.springframework.cloud.contract.spec.Contract.make {
             contentType(applicationJson())
         }
     }
-}
+}*/

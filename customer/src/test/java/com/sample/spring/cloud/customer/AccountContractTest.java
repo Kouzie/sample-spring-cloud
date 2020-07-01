@@ -6,6 +6,7 @@ import com.sample.spring.cloud.customer.client.AccountClient;
 import com.sample.spring.cloud.customer.dto.Account;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +22,7 @@ import java.util.List;
 // 생성된 jar 파일을 가져올 수 있도록 group, artifact 등 설정
 // groupId:artifactId:versioncode:stub-qualifier:port
 @AutoConfigureStubRunner(ids = "com.sample.spring.cloud:account:+:stubs:9080", stubsMode = StubRunnerProperties.StubsMode.LOCAL)
+@Disabled
 public class AccountContractTest {
 
     @Autowired

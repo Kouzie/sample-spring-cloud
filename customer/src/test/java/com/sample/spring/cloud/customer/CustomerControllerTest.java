@@ -24,6 +24,7 @@ import static io.specto.hoverfly.junit.dsl.ResponseCreators.success;
 @ExtendWith(HoverflyExtension.class)
 @TestPropertySource(locations = "classpath:application-test.properties")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Disabled
 public class CustomerControllerTest {
 
     @Autowired

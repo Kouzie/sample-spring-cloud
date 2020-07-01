@@ -26,12 +26,12 @@ import static org.mockito.Mockito.when;
 @PactBroker(host = "127.0.0.1", port = "9292")
 @ActiveProfiles("contract")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@Disabled
 public class AccountProviderContractTest {
 
     @MockBean
     private AccountRepository accountRepository;
 
-    @Disabled
     @TestTemplate
     @ExtendWith(PactVerificationInvocationContextProvider.class)
     void pactVerificationTestTemplate(@NotNull PactVerificationContext context) {

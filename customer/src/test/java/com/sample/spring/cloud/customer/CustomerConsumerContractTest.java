@@ -13,6 +13,7 @@ import com.sample.spring.cloud.customer.dto.Account;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.entity.ContentType;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ import java.util.List;
         "account-service.ribbon.listOfServers=127.0.0.1:9080" // pact 를 사용하려면 localhost 를 이용하여 테스트해야함
 })
 @PactTestFor(providerName = "customerServiceProvider", port = "9080")
+@Disabled
 public class CustomerConsumerContractTest {
 
     @Autowired

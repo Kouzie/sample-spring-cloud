@@ -1,4 +1,4 @@
-package contracts.orderService
+package contracts.orderScenario
 
 org.springframework.cloud.contract.spec.Contract.make {
     request {
@@ -20,8 +20,8 @@ org.springframework.cloud.contract.spec.Contract.make {
                 status    : 'ACCEPTED',
                 productIds: ['1', '4'],
                 customerId: '1',
-                accountId : '1',
-                price     : 950
+                accountId : $(regex('[0-9]{1}')),
+                price     : $(regex('[0-9]{3}'))
         ])
         headers {
             contentType('application/json')
