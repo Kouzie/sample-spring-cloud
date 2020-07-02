@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sample.spring.cloud.order.client.AccountClient;
 import com.sample.spring.cloud.order.client.CustomerClient;
-import com.sample.spring.cloud.order.client.ProductClient;
 import com.sample.spring.cloud.order.dto.Account;
 import com.sample.spring.cloud.order.dto.Customer;
 import com.sample.spring.cloud.order.message.AccountOrder;
