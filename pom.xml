@@ -85,5 +85,6 @@
         <module>admin</module>
         <module>hystrix-dashboard</module>
         <module>zuul</module>
+        <module>mqtt-client</module>
     </modules>
 </project>

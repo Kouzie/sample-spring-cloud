@@ -33,7 +33,7 @@ public class OrderSender {
         return result1 && result2;
     }
 
-    @Profile("!(test | dev)")
+    /*@Profile("!(test | dev)")
     @Bean
     @InboundChannelAdapter(value = AccountOrder.OUTPUT, poller = @Poller(fixedDelay = "3000", maxMessagesPerPoll = "1"))
     public MessageSource orderSource() {
@@ -56,5 +56,5 @@ public class OrderSender {
                 return new GenericMessage(result);
             }
         };
-    }
+    }*/
 }
