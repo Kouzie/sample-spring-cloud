@@ -86,5 +86,6 @@
         <module>hystrix-dashboard</module>
         <module>zuul</module>
         <module>mqtt-client</module>
+        <module>websocket</module>
     </modules>
 </project>
