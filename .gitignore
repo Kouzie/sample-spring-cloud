@@ -5,3 +5,7 @@
 .DS_Store
 */*.iml
 */target
+*/.project
+*/.factorypath
+*/.classpath
+*/.settings
